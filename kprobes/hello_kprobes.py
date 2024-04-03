@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from bcc import BPF
 bpf_source = """
-#include <linux/bpf.h>
+#include <uapi/linux/ptrace.h>
 int do_sys_execve(struct pt_regs *ctx)
 {
     char comm[16];
