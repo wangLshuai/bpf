@@ -6,9 +6,12 @@
 #include <poll.h>
 #include <stdio.h>
 
-int main() {
+int main(int argc,char *argv[]) {
     // 打开键盘设备，这里假设/dev/input/event0是键盘设备
-    int fd = open("/dev/input/event3", O_RDONLY);
+    char buf[64];
+    snprintf(buf,sizeof(buf),"/dev/input/event%s",argv[1]);
+    printf("%s\n",buf);
+    int fd = open(buf, O_RDONLY);
     if (fd == -1) {
         perror("Failed to open keyboard device");
         return 1;
